@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2017",
+      "declaration": true,
+      "noImplicitAny": false,
+      "moduleResolution": "node",
+      "inlineSourceMap": true,
+      "outDir": "lib",
+      "baseUrl": "src",
+      "paths": {
+          "*": [
+              "node_modules/*"
+          ]
+      },
+      "experimentalDecorators": true
+  },
+  "include": [
+      "src/**/*"
+  ]
+}

@@ -1,0 +1,1 @@
+throw new Error("you should require by exact path, e.g. require('olympic-util/lib/log')")

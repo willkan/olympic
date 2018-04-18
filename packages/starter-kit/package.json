@@ -1,0 +1,86 @@
+{
+  "name": "olympic-starter-kit",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/fs-extra": "^5.0.0",
+    "chalk": "^2.3.0",
+    "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "fs-extra": "^5.0.0",
+    "helmet": "^3.9.0",
+    "joi": "^13.1.0",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4",
+    "mysql": "^2.15.0",
+    "olympic-ioc": "^0.1.0",
+    "olympic-util": "^0.1.0",
+    "onlylog": "^1.0.0-beta3",
+    "sanitize-filename": "^1.6.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "report": "jest && open coverage/index.html",
+    "build": "./node_modules/.bin/tsc",
+    "prepare": "npm run build",
+    "start": "./bin/starter.js",
+    "dev": "./bin/dev",
+    "make": "npm run build && rm -rf out && mkdir -p out/release && rsync -arv --exclude-from='.rsyncignore' . out/release/",
+    "install-procution": "cd out/release && NODE_ENV=production cnpm install && cd - || cd -",
+    "tgz-out-release": "tar -cvzf deploy.tgz out/release",
+    "build-for-deploy": "npm run make && npm run install-procution && cp etc/config.${DEPLOY_ENV}.yaml out/release/etc/config.yaml && npm run tgz-out-release"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.0",
+    "@types/jest": "^22.0.1",
+    "@types/joi": "^13.0.4",
+    "@types/js-yaml": "^3.10.1",
+    "@types/lodash": "^4.14.92",
+    "@types/mysql": "^2.15.2",
+    "@types/node": "^8.5.2",
+    "glob-watcher": "^5.0.1",
+    "jest": "^22.0.4",
+    "minimist": "^1.2.0",
+    "sinon": "^4.1.5",
+    "ts-jest": "^22.0.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "jest": {
+    "forceExit": true,
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+      "webpage/.+\\.(js|jsx|ts|tsx)$"
+    ],
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testPathIgnorePatterns": [
+      "webpage"
+    ],
+    "modulePathIgnorePatterns": [
+      "test-resource-generated"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.ts?(x)",
+      "**/?(*.)(spec|test).ts?(x)"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "./tsconfig.test.json"
+      }
+    }
+  }
+}

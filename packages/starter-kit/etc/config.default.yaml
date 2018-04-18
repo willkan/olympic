@@ -1,0 +1,4 @@
+log_stdio: true
+log_levels: ['debug', 'info', 'error', 'warn']
+models: ['model1']
+http_port: 7001
