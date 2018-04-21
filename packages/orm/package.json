@@ -1,7 +1,6 @@
 {
   "name": "olympic-orm",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "chalk": "^2.3.0",
     "fs-extra": "^5.0.0",

@@ -1,7 +1,6 @@
 {
   "name": "olympic-ioc",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "chalk": "^2.3.0",
     "compression": "^1.7.1",
