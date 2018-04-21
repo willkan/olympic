@@ -1,6 +1,6 @@
 {
   "name": "olympic-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "willkan @willkan",
   "bin": {
     "olympic-cli": "./bin/run"
@@ -35,7 +35,8 @@
   "files": [
     "/.oclif.manifest.json",
     "/bin",
-    "/lib"
+    "/lib",
+    "/resource"
   ],
   "homepage": "https://github.com/willkan/olympic/tree/master/packages/cli",
   "keywords": [
