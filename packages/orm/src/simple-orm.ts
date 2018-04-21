@@ -71,6 +71,7 @@ export const defaultColumns: (Column<any, any> | string)[] = [
   },
   {
     name: 'is_deleted',
+    autoCreate: () => 0
   }
 ]
 
@@ -145,7 +146,7 @@ export class SimpleOrm {
     const result = {}
     for (const key in row) {
       if (!this.columnMap[key]) {
-        this.options.logger.warn(`no column define with alias ${key}`)
+        this.options.logger.warn(`no column define with alias \`${key}\``)
         result[key] = row[key]
         continue
       }
@@ -159,12 +160,13 @@ export class SimpleOrm {
     const result = {}
     for (const key in row) {
       if (!this.columnMap[key]) {
-        this.options.logger.warn(`no column define with alias ${key}`)
+        this.options.logger.warn(`no column define with alias \`${key}\``)
         result[key] = row[key]
         continue
       }
+      const name = this.columnMap[key].name
       const setter = this.columnMap[key].set
-      result[key] = setter ? setter(row[key]) : row[key]
+      result[name] = setter ? setter(row[key]) : row[key]
     }
     return result
   }
@@ -181,7 +183,7 @@ export class SimpleOrm {
     if (where) {
       whereConditions.push(where)
     }
-    whereConditions.push('is_deleted = 0')
+    whereConditions.push('`is_deleted` = 0')
     sql += whereConditions.join(' and ')
     const limit = format(`limit ? offset ?`, [pageNumber, pageSize])
     const orderBy = `order by ` +  orderColumns.map(column => format('??', [column])).join(', ')
@@ -194,7 +196,7 @@ export class SimpleOrm {
   }
 
   detailById(id: string|number, connection?: Connection) {
-    return this.detail(format(`${this.idColumn} = ? and is_deleted = 0`, [id]))
+    return this.detail(format(`${this.idColumn} = ? and \`is_deleted\` = 0`, [id]))
   }
 
   async detail(where: string, connection?: Connection) {
@@ -208,7 +210,12 @@ export class SimpleOrm {
   async add(row: any, connection?: Connection) {
     row = pick(row, this.notAutoCreateColumns)
     this.autoCreateColumns.forEach(key => row[key] = this.columnMap[key].autoCreate())
-    let sql = format(`insert into ${this.table} set ?`, [this.parseWithSetter(row)])
+    row = this.parseWithSetter(row)
+    const keys = Object.keys(row)
+    const columns = keys.map(key => format('??', [key]))
+    const values = keys.map(key => format('?', [row[key]]))
+    // let sql = format(`insert into ${this.table} set ?`, [this.parseWithSetter(row)])
+    let sql = `insert into ${this.table} (${columns.join(", ")}) values (${values.join(", ")})`
     this.options.logger.debug(sql)
     const [result] = await this.executeQuery(sql, connection)
     return result.insertId
@@ -216,9 +223,9 @@ export class SimpleOrm {
 
   async update(id: string|number, row: any, connection?: Connection) {
     row = pick(row, this.canUpdateColumns)
-    this.autoUpdateColumns.forEach(key => row[key] = this.columnMap[key].autoUpdate())
     if (Object.keys(row).length === 0) throw makeError('UPDATE_NOTHING', `no columns to update`, 400)
-    let sql = format(`update ${this.table} set ? where ${this.idColumn} = ? and is_delete = 0 limit 1`, [
+    this.autoUpdateColumns.forEach(key => row[key] = this.columnMap[key].autoUpdate())
+    let sql = format(`update ${this.table} set ? where ${this.idColumn} = ? and \`is_deleted\` = 0 limit 1`, [
       this.parseWithSetter(row),
       id
     ])
@@ -231,7 +238,7 @@ export class SimpleOrm {
   }
   
   async remove(id: string|number, connection?: Connection) {
-    let sql = format(`update ${this.table} set is_deleted = 1 where ${this.idColumn} = ? limit 1`, [id])
+    let sql = format(`update ${this.table} set \`is_deleted\` = 1 where ${this.idColumn} = ? and \`is_deleted\` = 0 limit 1`, [id])
     this.options.logger.debug(sql)
     const [result] = await this.executeQuery(sql, connection)
     if (result.affectedRows === 0) {
