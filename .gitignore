@@ -3,3 +3,6 @@ node_modules
 coverage
 lib
 .DS_Store
+out
+config.yaml
+deploy.tgz
