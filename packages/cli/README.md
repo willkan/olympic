@@ -11,7 +11,57 @@ olympic-cli
 [![License](https://img.shields.io/npm/l/olympic-cli.svg)](https://github.com/https://github.com/willkan/olympic/olympic-cli/blob/master/package.json)
 
 <!-- toc -->
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 # Usage
 <!-- usage -->
+```sh-session
+$ npm install -g olympic-cli
+$ olympic-cli COMMAND
+running command...
+$ olympic-cli (-v|--version|version)
+olympic-cli/0.1.0 darwin-x64 node-v9.11.1
+$ olympic-cli --help [COMMAND]
+USAGE
+  $ olympic-cli COMMAND
+...
+```
+<!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`olympic-cli create PROJECT`](#olympic-cli-create-project)
+* [`olympic-cli help [COMMAND]`](#olympic-cli-help-command)
+
+## `olympic-cli create PROJECT`
+
+create project with the olympic-starter
+
+```
+USAGE
+  $ olympic-cli create PROJECT
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ olympic-cli create [project]
+```
+
+## `olympic-cli help [COMMAND]`
+
+display help for olympic-cli
+
+```
+USAGE
+  $ olympic-cli help [COMMAND]
+
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v1.2.5/src/commands/help.ts)_
+<!-- commandsstop -->
