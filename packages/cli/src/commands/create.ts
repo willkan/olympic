@@ -28,7 +28,7 @@ export default class Create extends Command {
     const packageJsonFile = path.join(projectDir, "package.json")
     const packageObj = fs.readJsonSync(packageJsonFile) as any
     packageObj.name = project
-    fs.writeJsonSync(packageJsonFile, packageObj)
+    fs.writeFileSync(packageJsonFile, JSON.stringify(packageObj, null, '  '))
     this.log(`installing dependencies`)
     let npm = 'cnpm'
     try {
