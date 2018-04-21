@@ -23,7 +23,7 @@ export default class Create extends Command {
     this.log(`start to create olympic project [${project}] `)
     const projectDir = path.join(process.cwd(), project)
     this.log(`copying tpl to target(${projectDir})`)
-    fs.copySync(path.join(__dirname, "..", "..", "src", "resource", "default-tpl"), projectDir, {recursive: true})
+    fs.copySync(path.join(__dirname, "..", "..", "resource", "default-tpl"), projectDir, {recursive: true})
     this.log(`updating package.json`)
     const packageJsonFile = path.join(projectDir, "package.json")
     const packageObj = fs.readJsonSync(packageJsonFile) as any
