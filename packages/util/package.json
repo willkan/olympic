@@ -8,7 +8,7 @@
     "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
     "mysql": "^2.15.0",
-    "onlylog": "1.0.0-beta12"
+    "onlylog": "1.0.0-beta13"
   },
   "scripts": {
     "test": "jest",
