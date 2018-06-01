@@ -1,6 +1,6 @@
 {
   "name": "olympic-util",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "dependencies": {
     "chalk": "^2.3.0",
     "fs-extra": "^5.0.0",

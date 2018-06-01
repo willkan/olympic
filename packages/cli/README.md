@@ -21,7 +21,7 @@ $ npm install -g olympic-cli
 $ olympic-cli COMMAND
 running command...
 $ olympic-cli (-v|--version|version)
-olympic-cli/0.1.14 darwin-x64 node-v9.10.0
+olympic-cli/0.1.15 darwin-x64 node-v9.10.0
 $ olympic-cli --help [COMMAND]
 USAGE
   $ olympic-cli COMMAND
