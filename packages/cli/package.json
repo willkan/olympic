@@ -1,6 +1,6 @@
 {
   "name": "olympic-cli",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": "willkan @willkan",
   "bin": {
     "olympic-cli": "./bin/run"
