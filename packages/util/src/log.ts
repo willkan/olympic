@@ -1,6 +1,7 @@
 import * as path from 'path'
 import { isObject, extend, template } from 'lodash'
-import onlylog, {Onlylog, OnlylogOptions, Level} from 'onlylog'
+import * as onlylog from 'onlylog'
+import {Onlylog, OnlylogOptions, Level} from 'onlylog'
 import chalk from 'chalk'
 import { Request, Response, NextFunction } from 'express'
 import * as fs from 'fs-extra'

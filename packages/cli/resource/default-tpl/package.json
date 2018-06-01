@@ -16,7 +16,6 @@
     "mysql": "^2.15.0",
     "olympic-ioc": "^0.1.0",
     "olympic-util": "^0.1.0",
-    "onlylog": "^1.0.0-beta3",
     "sanitize-filename": "^1.6.1"
   },
   "scripts": {
