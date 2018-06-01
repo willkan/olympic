@@ -14,9 +14,8 @@
     "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
     "mysql": "^2.15.0",
-    "olympic-ioc": "^0.1.13",
-    "olympic-util": "^0.1.13",
-    "sanitize-filename": "^1.6.1"
+    "olympic-ioc": "^0.1.14",
+    "olympic-util": "^0.1.14"
   },
   "scripts": {
     "test": "jest",
