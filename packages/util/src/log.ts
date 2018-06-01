@@ -55,7 +55,7 @@ export function destroyLogs() {
   for (const key in logs) {
     if (key === 'process') continue
     logs[key].info("[onlylog destroyed]")
-    if ((logs[key] as any).options.stream === process.stdout) continue
+    if (logs[key].options.stream === process.stdout) continue
     logs[key].destroy()
   }
 }
