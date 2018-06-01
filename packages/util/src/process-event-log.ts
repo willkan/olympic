@@ -16,7 +16,7 @@ export function setBeforeExit(_beforeExit: BeforeExitFunc) {
   beforeExit = _beforeExit
 } 
 
-const logger = createLog('process')
+const logger = createLog('process', true)
 
 process.on('exit', (code) => {
   logger.info(`exit with code ${code}`)
@@ -39,8 +39,9 @@ signals.forEach(signal => {
       exitNumber = await Promise.race([beforeExit(signal), beforeExitTimeoutPromiseGen()])
     } catch (e) {
       logger.error(`[Signal ${signal}] call beforeExit failed: `, e.stack)
-      process.exit(99)
+      exitNumber = 99
     }
+    logger.info(`[onlylog destroyed]`)
     process.exit(exitNumber)
   })
 })

@@ -53,19 +53,21 @@ const logs: {[key: string]: Onlylog} = {}
 
 export function destroyLogs() {
   for (const key in logs) {
+    if (key === 'process') continue
     logs[key].info("[onlylog destroyed]")
+    if ((logs[key] as any).options.stream === process.stdout) continue
     logs[key].destroy()
   }
 }
 
-export function createLog(name: string) {
+export function createLog(name: string, useStdout = false) {
   if (logs[name]) return logs[name]
   let options: OnlylogOptions = {
     bufferLength: 100,
     duration: 2000,
     logLevels: globalOptions.logLevels
   }
-  if (globalOptions.logStdio) {
+  if (useStdout || globalOptions.logStdio) {
     let prefix = getLogStdioColor(`[${name}]`)
     options.bufferLength = 0
     options.stream = process.stdout
@@ -74,7 +76,7 @@ export function createLog(name: string) {
     }
   } else {
     fs.mkdirsSync(globalOptions.logDir)
-    options.fileName = `[${path.join(globalOptions.logDir, name)}]-YYYY-MM-DD[.log]`
+    options.filename = `[${path.join(globalOptions.logDir, name)}]-YYYY-MM-DD[.log]`
   }
   logs[name] = onlylog(options)
   logs[name].on('error', function (err: Error) {

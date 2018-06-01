@@ -1,6 +1,6 @@
 {
   "name": "olympic-ioc",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "dependencies": {
     "chalk": "^2.3.0",
     "compression": "^1.7.1",
@@ -12,7 +12,7 @@
     "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
     "mysql": "^2.15.0",
-    "olympic-util": "^0.1.15",
+    "olympic-util": "^0.1.16",
     "onlylog": "^1.0.0-beta3",
     "sanitize-filename": "^1.6.1"
   },

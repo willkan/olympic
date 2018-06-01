@@ -1,0 +1,5 @@
+log_stdio: false
+log_dir: /tmp
+log_levels: ['info', 'error', 'warn']
+models: ['model1']
+http_port: 7001
