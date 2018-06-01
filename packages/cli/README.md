@@ -21,7 +21,7 @@ $ npm install -g olympic-cli
 $ olympic-cli COMMAND
 running command...
 $ olympic-cli (-v|--version|version)
-olympic-cli/0.1.9 darwin-x64 node-v9.11.1
+olympic-cli/0.1.11 darwin-x64 node-v9.10.0
 $ olympic-cli --help [COMMAND]
 USAGE
   $ olympic-cli COMMAND
@@ -63,5 +63,5 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v1.2.5/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v1.2.11//Users/wanghuikang/develop/olympic/packages/cli/node_modules/_@oclif_plugin-help@1.2.11@@oclif/plugin-help/lib/commands/help.ts)_
 <!-- commandsstop -->

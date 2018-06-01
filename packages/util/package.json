@@ -1,6 +1,6 @@
 {
   "name": "olympic-util",
-  "version": "0.1.3",
+  "version": "0.1.11",
   "dependencies": {
     "chalk": "^2.3.0",
     "fs-extra": "^5.0.0",
@@ -8,7 +8,7 @@
     "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
     "mysql": "^2.15.0",
-    "onlylog": "^1.0.0-beta3"
+    "onlylog": "1.0.0-beta12"
   },
   "scripts": {
     "test": "jest",
