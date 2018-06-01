@@ -51,6 +51,13 @@ const getLogStdioColor = (() => {
 
 const logs: {[key: string]: Onlylog} = {}
 
+export function destroyLogs() {
+  for (const key in logs) {
+    logs[key].info("[onlylog destroyed]")
+    logs[key].destroy()
+  }
+}
+
 export function createLog(name: string) {
   if (logs[name]) return logs[name]
   let options: OnlylogOptions = {
