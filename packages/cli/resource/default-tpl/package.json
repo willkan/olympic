@@ -24,7 +24,7 @@
     "build": "./node_modules/.bin/tsc",
     "prepare": "npm run build",
     "start": "./bin/starter.js",
-    "dev": "./bin/dev",
+    "dev": "./bin/dev.js",
     "make": "npm run build && rm -rf out && mkdir -p out/release && rsync -arv --exclude-from='.rsyncignore' . out/release/",
     "install-procution": "cd out/release && NODE_ENV=production cnpm install && cd - || cd -",
     "tgz-out-release": "tar -cvzf deploy.tgz out/release",
