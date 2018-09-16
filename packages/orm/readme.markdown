@@ -2,23 +2,44 @@
 
 require the exact path of module
 
-### log
-`require('olympic/lib/log')`
+### SimpleOrm
+```
+import { getPool } from "olympic-util/lib/mysql"
+import { SimpleOrm } from "olympic-orm/lib/simple-orm"
 
-### error-helper
-`require('olympic/lib/error-helper')`
+const orm = new SimpleOrm({
+  columns: [
+    {
+      name: 'id',
+      canUpdate: false
+    },
+    'test_id',
+    {
+      name: 'test_content',
+      alias: 'content',
+    },
+    {
+      name: 'test_content2',
+      detailOnly: true,
+      canUpdate: false,
+      set(content) {return JSON.stringify(content)},
+      get(content) {return JSON.parse(content)}
+    }
+  ],
+  table: 'my_table',
+  logger: createLog('orm-tes'),
+  idColumn: 'id',
+  pool: getPool(poolConfig),
+});
 
-### error-middleware
-`require('olympic/lib/error-middleware')`
+(async () => () {
+  const insertId = await orm.add(item)
+  await orm.update(insertId, propsToBeUpdated)
+  const items = await orm.list()
+  const item = await orm.detailById(1)
+  await orm.remove(insertId)
 
-### etc
-`require('olympic/lib/etc')`
-
-### result-wrapper
-`require('olympic/lib/result-wrapper')`
-
-### rid
-`require('olympic/lib/rid')`
-
-### mysql
-`require('olympic/lib/mysql')`
+})().catch(err => {
+  console.error(err)
+})
+```
