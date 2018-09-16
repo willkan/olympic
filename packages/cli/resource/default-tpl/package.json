@@ -49,8 +49,7 @@
   "jest": {
     "forceExit": true,
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "webpage/.+\\.(js|jsx|ts|tsx)$"
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
     ],
     "mapCoverage": true,
     "collectCoverage": true,
